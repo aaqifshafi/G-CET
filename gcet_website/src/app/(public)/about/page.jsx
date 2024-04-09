@@ -1,4 +1,5 @@
 import Heading2 from "@/components/Heading2";
+import Heading3 from "@/components/Heading3";
 import CollegeAddress from "@/components/public/CollegeAddress";
 import CoursesWeOffer from "@/components/public/CoursesWeOffer";
 import WhyChooseUs from "./WhyChooseUs";
@@ -101,7 +102,7 @@ const AboutUs = () => {
         </p>
 
         <div className="max-w-full">
-          <Heading2 headingText={"Facilites"} />
+          <Heading3 headingText={"Facilites"} />
           <div className="flex gap-4 flex-wrap">
             {FACILITY_KEYWORDS.map((keyword, index) => (
               <span

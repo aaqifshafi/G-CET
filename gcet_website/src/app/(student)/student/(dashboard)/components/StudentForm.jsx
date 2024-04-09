@@ -191,7 +191,6 @@ const StudentForm = () => {
                 type="text"
                 value={formData.firstName}
                 onChangeHandler={onChangeHandler}
-                Required={true}
               />
 
               <InputBox
@@ -200,7 +199,6 @@ const StudentForm = () => {
                 type="text"
                 value={formData.lastName}
                 onChangeHandler={onChangeHandler}
-                Required={false}
               />
             </div>
           </div>
@@ -218,7 +216,7 @@ const StudentForm = () => {
               id="email"
               value={formData.email}
               icon={faEnvelope}
-              Required={true}
+              isDisabled={true}
             />
           </div>
           {/* DOB */}

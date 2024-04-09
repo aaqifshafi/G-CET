@@ -11,6 +11,7 @@ const InputBox = ({
   value,
   onChangeHandler,
   icon,
+  isDisabled,
   id,
   maxLength,
   isRequired,
@@ -33,7 +34,7 @@ const InputBox = ({
         placeholder={placeholder}
         onChange={onChangeHandler}
         required={isRequired}
-        disabled={isRequired}
+        disabled={isDisabled}
         max={max}
         min={min}
         maxLength={maxLength}
@@ -52,6 +53,7 @@ InputBox.propTypes = {
   id: PropTypes.string,
   isRequired: PropTypes.bool,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
 export default InputBox;
