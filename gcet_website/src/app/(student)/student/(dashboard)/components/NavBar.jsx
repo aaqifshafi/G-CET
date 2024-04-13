@@ -36,23 +36,23 @@ const NavBar = ({ isMenuOpen }) => {
     {
       name: "Submitted Application",
       icon: faDatabase,
-      link: "student/myApplications",
+      link: "/student/myApplications",
     },
     {
       name: "Payment",
       icon: faIndianRupeeSign,
-      link: "student/feePayment",
+      link: "/student/feePayment",
     },
     {
       name: "Results",
       icon: faSquarePen,
-      link: "student/results",
+      link: "/student/results",
     },
-    {
-      name: "Setting",
-      icon: faGear,
-      link: "student/settings",
-    },
+    // {
+    //   name: "Setting",
+    //   icon: faGear,
+    //   link: "/student/settings",
+    // },
   ];
 
   return (
