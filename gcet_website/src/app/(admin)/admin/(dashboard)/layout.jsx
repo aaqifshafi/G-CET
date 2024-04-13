@@ -1,5 +1,4 @@
 "use client";
-
 import "@/app/globals.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";

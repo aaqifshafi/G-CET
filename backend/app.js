@@ -9,6 +9,8 @@ const bcrypt = require('bcrypt'); // For password hashing
 const Student = require('./models/Students');
 const authRoutes = require('./routes/authRoutes');
 const applicationForm = require('./routes/applicationForm');
+const feedback = require('./routes/feedback');
+const notice = require('./routes/notice');
 
 const app = express();
 const PORT = 5000;
@@ -23,7 +25,7 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/')
-app.use('/', authRoutes, applicationForm);
+app.use('/', authRoutes, applicationForm, feedback, notice);
 
 
 // Route for admin sign-in

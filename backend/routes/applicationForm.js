@@ -1,12 +1,6 @@
 
 const express = require('express');
 const Students = require('../models/Students');
-
-const app = express();
-
-
-// CORS middleware
-
 const router = express.Router();
 
 // POST /application
@@ -16,7 +10,7 @@ router.post('/student/form', async (req, res) => {
         const { email } = req.body; // Extract email from request body
 
         const updateData = req.body; // Data to update from request body
-        console.log(req.body);
+
         // Find the student by email and update it with the provided data
         const updatedStudent = await Students.findOneAndUpdate({ email }, updateData, { new: true });
         console.log(updatedStudent);

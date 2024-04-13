@@ -2,14 +2,7 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
-const Notice = ({
-  category,
-  title,
-  date,
-  description,
-  downloadLink,
-  detailsLink,
-}) => {
+const Notice = ({ category, title, date, downloadLink }) => {
   return (
     <div>
       {/* category */}

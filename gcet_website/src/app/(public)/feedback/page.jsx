@@ -23,26 +23,16 @@ const FeedbackForm = () => {
   // Loading spinner variable
   const [isLoading, setIsLoading] = useState(false);
 
-  // Function to handle change in input fields
-  const onChangeHandler = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   // Function to handle form submit
   const handleSubmit = async (e) => {
-    // Check if any field is empty
-    for (const key in formData) {
-      if (key !== "email" && !formData[key]) {
-        setIsToastVisible(true);
-        setToast({
-          type: "warning",
-          message: "Please fill out all fields",
-        });
-        return; // Exit the function if any field is empty
-      }
+    // Check if feedback and email fields are filled
+    if (!feedback || !email) {
+      setIsToastVisible(true);
+      setToast({
+        type: "warning",
+        message: "Please fill out both feedback and email fields",
+      });
+      return; // Exit the function if either field is empty
     }
 
     const options = {
@@ -61,7 +51,7 @@ const FeedbackForm = () => {
 
     try {
       setIsLoading(true);
-      const response = await fetch(`${apiURL}/submit-feedback`, options);
+      const response = await fetch(`${apiURL}/feedback`, options);
 
       const data = await response.json();
 
@@ -75,12 +65,12 @@ const FeedbackForm = () => {
         setIsToastVisible(true);
         setToast({
           type: "success",
-          message: data.message, // Respone message from the server(Your Data has been Updated)
+          message: data.message, // Response message from the server (Your Data has been Updated)
         });
-        // Reset form fields after successful submission
-        setName("");
-        setEmail("");
-        setFeedback("");
+        setTimeout(() => {
+          // Redirect to feedback page after 3 seconds
+          router.refresh("/feedback");
+        }, 3000);
       }
     } catch (err) {
       setIsToastVisible(true);

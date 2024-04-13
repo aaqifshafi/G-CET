@@ -9,9 +9,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import PropTypes from "prop-types";
 
 const NavBar = ({ isMenuOpen }) => {
+  const router = useRouter();
+  const handleLogout = () => {
+    // localStorage.removeItem("authorization");
+    // sessionStorage.removeItem("authorization");
+    router.replace("/admin/login");
+  };
   const NAV_ITEMS = [
     {
       name: "DashBoard",
@@ -43,11 +50,6 @@ const NavBar = ({ isMenuOpen }) => {
       icon: faGear,
       link: "/admin/Setting",
     },
-    {
-      name: "Logout",
-      icon: faArrowRightFromBracket,
-      link: "/admin/Logout",
-    },
   ];
   return (
     <nav className=" max-w-full bg-blue-900 h-full overflow-y-auto">
@@ -66,6 +68,16 @@ const NavBar = ({ isMenuOpen }) => {
             </Link>
           </li>
         ))}
+        <li
+          onClick={handleLogout}
+          className={`flex items-center gap-4 p-2 rounded-md hover:bg-blue-800 cursor-pointer font-medium duration-500 `}
+        >
+          <FontAwesomeIcon
+            className="text-xl font-light"
+            icon={faArrowRightFromBracket}
+          />
+          {isMenuOpen && <span>Logout</span>}
+        </li>
       </ul>
     </nav>
   );

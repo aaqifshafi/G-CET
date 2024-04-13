@@ -5,7 +5,7 @@ import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const NoticeTable = ({ notices }) => {
   return (
-    <>
+    <div className="m-4">
       <div className="max-w-full overflow-hidden">
         <div className="border max-w-full overflow-x-auto no-scrollbar my-4 mb-0">
           <div className="px-4 py-2">
@@ -53,7 +53,7 @@ const NoticeTable = ({ notices }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -50,7 +50,7 @@ router.post('/student/login', async (req, res) => {
     try {
         // Find the student
         const student = await Student.findOne({ email });
-        console.log(student);
+
         if (!student) {
             return res.status(400).json({ message: 'Invalid credentials', success: false });
         }

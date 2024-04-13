@@ -21,23 +21,7 @@ const Header = ({ setIsMenuOpen }) => {
 
       {/* ======= Right Side container ======= */}
       <div className="flex items-center h-full">
-        {/* ======= Message Notification ======= */}
-        <div className="h-full p-5 hover:bg-primary-dark cursor-pointer flex items-center">
-          <FontAwesomeIcon icon={faEnvelope} />
-        </div>
-
-        {/* ======= Message Notification ======= */}
-        <div className="h-full p-5 hover:bg-primary-dark cursor-pointer flex items-center">
-          <FontAwesomeIcon icon={faBell} />
-        </div>
-
-        {/* ======= Message Notification ======= */}
-        <div className="h-full p-5 hover:bg-primary-dark cursor-pointer flex items-center">
-          <FontAwesomeIcon icon={faFlag} />
-        </div>
-
-        {/* ======= Student Avatar ======= */}
-        <div className="flex gap-2 items-center px-4 h-full hover:bg-primary-dark cursor-pointer">
+        <div className="h-full p-3 hover:bg-primary-dark cursor-pointer flex items-center">
           <Image
             src={AVATAR}
             height={35}
@@ -45,7 +29,7 @@ const Header = ({ setIsMenuOpen }) => {
             alt="User Avatar"
             className="rounded-full border-2 border-white"
           />
-          <span className="hidden sm:inline-block">Admin</span>
+          <span className="hidden sm:inline-block">adminName</span>
         </div>
       </div>
     </header>
