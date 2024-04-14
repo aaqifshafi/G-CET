@@ -16,6 +16,7 @@ const InputBox = ({
   maxLength,
   isRequired,
   pattern,
+  accept,
 }) => {
   return (
     <div className="border rounded-sm overflow-hidden flex">
@@ -37,6 +38,7 @@ const InputBox = ({
         disabled={isDisabled}
         max={max}
         min={min}
+        accept={accept}
         maxLength={maxLength}
         pattern={pattern}
       />

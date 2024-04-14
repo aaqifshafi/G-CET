@@ -1,6 +1,6 @@
 import {
   faArrowRightFromBracket,
-  faCircleExclamation,
+  faBell,
   faDatabase,
   faGear,
   faSquarePen,
@@ -28,22 +28,22 @@ const NavBar = ({ isMenuOpen }) => {
     {
       name: "Received Application ",
       icon: faUniversity,
-      link: "/admin/ReceivedApplication",
+      link: "/admin/applications",
     },
     {
       name: "Pending Application",
       icon: faDatabase,
-      link: "/admin/PendingApplication",
+      link: "/admin/pending",
     },
     {
-      name: "Notice",
-      icon: faCircleExclamation,
-      link: "/admin/notice",
+      name: "Upload Notice",
+      icon: faBell,
+      link: "/admin/uploadNotice",
     },
     {
-      name: "Change Request",
+      name: "Upload Result",
       icon: faSquarePen,
-      link: "/admin/changeRequest",
+      link: "/admin/uploadResult",
     },
     {
       name: "Setting",
