@@ -15,8 +15,8 @@ import PropTypes from "prop-types";
 const NavBar = ({ isMenuOpen }) => {
   const router = useRouter();
   const handleLogout = () => {
-    // localStorage.removeItem("authorization");
-    // sessionStorage.removeItem("authorization");
+    localStorage.removeItem("authorization");
+    sessionStorage.removeItem("authorization");
     router.replace("/admin/login");
   };
   const NAV_ITEMS = [
