@@ -1,5 +1,4 @@
 "use client";
-
 import "@/app/globals.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
@@ -78,7 +77,7 @@ export default function RootLayout({ children }) {
             <Header
               setIsMenuOpen={setIsMenuOpen}
               isMenuOpen={isMenuOpen}
-              studentName={context.studentDetails.name}
+              studentName={context.studentDetails?.firstName || "User"}
             />
 
             {/* ======= Main Content Start ======= */}

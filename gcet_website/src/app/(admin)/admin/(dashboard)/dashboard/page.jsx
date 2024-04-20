@@ -1,6 +1,6 @@
 import Heading3 from "@/components/Heading3";
 
-const StudentDashboard = () => {
+const AdminDashboard = () => {
   return (
     <div className="min-h-fit  sm:mx-2 border-2 rounded-md border-primary-regular overflow-x-auto">
       <h1 className="bg-primary-regular p-2 sm:p-4 text-secondary font-medium">
@@ -148,4 +148,4 @@ const StudentDashboard = () => {
   );
 };
 
-export default StudentDashboard;
+export default AdminDashboard;

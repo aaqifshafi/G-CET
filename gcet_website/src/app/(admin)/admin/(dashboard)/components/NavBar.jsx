@@ -2,7 +2,7 @@ import {
   faArrowRightFromBracket,
   faBell,
   faDatabase,
-  faGear,
+  faPaperclip,
   faSquarePen,
   faTable,
   faUniversity,
@@ -46,9 +46,9 @@ const NavBar = ({ isMenuOpen }) => {
       link: "/admin/uploadResult",
     },
     {
-      name: "Setting",
-      icon: faGear,
-      link: "/admin/Setting",
+      name: "Paper Wizard",
+      icon: faPaperclip,
+      link: "/admin/paperWizard",
     },
   ];
   return (

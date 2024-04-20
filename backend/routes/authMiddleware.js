@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Student = require('../models/Students');
+
 
 const authenticateToken = (req, res, next) => {
     const token = req.headers['authorization'];
@@ -12,8 +12,16 @@ const authenticateToken = (req, res, next) => {
         if (err) {
             return res.status(403).json({ error: 'Invalid token' });
         }
+        if (decoded.studentId) {
+            req.studentId = decoded.studentId;
+        } else if (decoded.teacherId) {
+            req.teacherId = decoded.teacherId;
+        } else {
+            return res.status(403).json({ error: 'Invalid token. User ID not found.' });
+        }
 
-        req.studentId = decoded.studentId;
+
+
         next();
     });
 };
