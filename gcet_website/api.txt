@@ -1,4 +1,4 @@
-chat gpt : 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
+
 
 import OpenAI from "openai";
 
