@@ -6,7 +6,6 @@ import Toast from "@/components/Toast";
 import Heading2 from "@/components/Heading2";
 import { faArrowUp, faBrain, faClock } from "@fortawesome/free-solid-svg-icons";
 import ChatBox from "../components/ChatBox";
-import ResponseBox from "../components/ResponseBox";
 
 const PaperWizard = () => {
   const [isToastVisible, setIsToastVisible] = useState(false);
@@ -32,9 +31,6 @@ const PaperWizard = () => {
       setIsToastVisible(true);
       return;
     }
-
-    // Implement upload logic
-    // ...
   };
 
   return (
@@ -43,7 +39,7 @@ const PaperWizard = () => {
         Auto generate Question Paper
       </h1>
       <div className="my-4 mx-4">
-        <Heading2 headingText={"Use the below Chat window"} />
+        <Heading2 headingText={"Paper Wizard"} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="marks" className="block font-medium mb-1">
@@ -113,8 +109,8 @@ const PaperWizard = () => {
             </select>
           </div>
         </div>
-        <ResponseBox />
-        <ChatBox />
+
+        <ChatBox formData={formData} />
       </div>
       {isToastVisible && <Toast type={toast.type} message={toast.message} />}
     </div>

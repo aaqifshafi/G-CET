@@ -8,7 +8,7 @@
 .replyHeader {
   display: flex;
   justify-content: flex-end;
-  margin: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .iconButton {
@@ -26,7 +26,7 @@
   background-color: #f0f0f0;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
-
+  max-width: 95%;
   word-wrap: break-word;
 }
 

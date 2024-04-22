@@ -50,7 +50,50 @@ const ResponseBox = ({ allMessages, newMessage }) => {
         // Append the new message to the existing messages
         setMessages((prevMessages) => [...prevMessages, newMessage]);
       }
-    }, 30); // Adjust the typing speed by changing this value (in milliseconds)
+    }, 5); // Adjust the typing speed by changing this value (in milliseconds)
+  };
+
+  const formatMessageContent = (content) => {
+    // Replace new line characters with HTML line breaks
+    content = content.replace(/\n/g, "<br/>");
+
+    // Split content into lines to check for lists and numbering
+    const lines = content.split("\n");
+
+    // Initialize an empty array to store formatted lines
+    let formattedLines = [];
+
+    // Iterate through each line
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+
+      // Check if the line is a numbered list item
+      if (/^\s*\d+\.\s+/.test(line)) {
+        // Wrap the line with <ol> and <li> tags
+        formattedLines.push(`<li>${line.replace(/^\s*\d+\.\s+/, "")}</li>`);
+      }
+      // Check if the line is a bulleted list item
+      else if (/^\s*-\s+/.test(line)) {
+        // Wrap the line with <ul> and <li> tags
+        formattedLines.push(`<li>${line.replace(/^\s*-\s+/, "")}</li>`);
+      }
+      // If the line is neither a list item nor empty, just add it as is
+      else if (line.trim().length > 0) {
+        formattedLines.push(line);
+      }
+    }
+
+    // Join the formatted lines with line breaks
+    content = formattedLines.join("<br/>");
+
+    // Apply bold and italic formatting
+    content = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"); // Bold
+    content = content.replace(/\*(.*?)\*/g, "<em>$1</em>"); // Italic
+
+    // You can add more formatting rules as needed
+
+    // Return the formatted content
+    return content;
   };
 
   return (
@@ -74,7 +117,12 @@ const ResponseBox = ({ allMessages, newMessage }) => {
             />
           </div>
           <div className={styles.replyBubble}>
-            <div className={styles.replyBubbleContent}>{message.content}</div>
+            <div
+              className={styles.replyBubbleContent}
+              dangerouslySetInnerHTML={{
+                __html: formatMessageContent(message.content),
+              }}
+            />
           </div>
         </div>
       ))}
