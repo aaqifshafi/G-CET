@@ -2,28 +2,23 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import ResponseBox from "./ResponseBox";
-import styles from "./Loading.module.css"; // Import the Loading styles
+import styles from "./Loading.module.css";
 
 const openAiAPI = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 
 const ChatBox = ({ formData }) => {
   const [message, setMessage] = useState("");
-  const [file, setFile] = useState(null);
   const [allMessages, setAllMessages] = useState([]);
   const [apiResponseMessage, setApiResponseMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // State for loading animation
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-
   const sendMessage = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    setIsLoading(true); // Set loading state to true
+    e.preventDefault();
+    setIsLoading(true);
 
     const url = "https://api.openai.com/v1/chat/completions";
     const token = `Bearer ${openAiAPI}`;
@@ -39,10 +34,7 @@ const ChatBox = ({ formData }) => {
         body: JSON.stringify({
           model: model,
           messages: [
-            {
-              role: "user",
-              content: message,
-            },
+            { role: "user", content: message },
             {
               role: "assistant",
               content: "Generate a Question paper for Examination...",
@@ -50,25 +42,20 @@ const ChatBox = ({ formData }) => {
           ],
         }),
       });
-
       let resJson = await res.json();
       setMessage("");
       setApiResponseMessage(resJson.choices[0].message);
     } catch (error) {
       console.error("Error:", error);
     } finally {
-      setIsLoading(false); // Set loading state back to false after response
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="mt-4 relative">
-      {" "}
-      {/* Added relative position */}
       {isLoading && (
         <div className={styles.preLoading}>
-          {" "}
-          {/* Apply loading styles */}
           <div className={styles.ldsEllipsis}>
             <div></div>
             <div></div>
@@ -87,22 +74,10 @@ const ChatBox = ({ formData }) => {
             onChange={handleMessageChange}
             placeholder="Powered by ChatGPT..."
           />
-          <label
-            htmlFor="file-input"
-            className="self-center p-3 text-blue-900 focus:outline-none cursor-pointer"
-          >
-            <FontAwesomeIcon icon={faPaperclip} />
-          </label>
-          <input
-            id="file-input"
-            type="file"
-            accept=".pdf,.txt,.doc,.docx"
-            onChange={handleFileChange}
-            className="hidden"
-          />
+
           <button
             type="submit"
-            className="self-center p-2 bg-primary-regular text-white rounded-full focus:outline-none"
+            className="self-center p-4 bg-primary-regular text-white  focus:outline-none"
           >
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
