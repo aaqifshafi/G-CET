@@ -13,7 +13,7 @@ router.post('/student/form', async (req, res) => {
 
         //Try  Updating the student document in the database
         const filter = { email: email };
-        const student = await Students.findOneAndUpdate(filter, formData, { new: true, runValidators: true });
+        const student = await Students.findOne(filter);
         if (!student) {
             // If no student found with the provided email, return a 404 response
             return res.status(404).json({ message: 'No student registered the provided email', success: false });
@@ -21,7 +21,6 @@ router.post('/student/form', async (req, res) => {
             // Check if a form with the same enrollmentNumber and currentSem already exists
             const existingForm = await Form.findOne({ enrollmentNumber, currentSem });
             if (existingForm) {
-
                 return res.status(404).json({ message: 'Form already exists', success: false });
             } else {
                 const data = {
@@ -30,7 +29,6 @@ router.post('/student/form', async (req, res) => {
                     formNumber: formData.formNumber,
                     email: email,
                 }
-                console.log(data);
                 const newForm = new Form(data);
                 // Save the new form document
                 const savedForm = await newForm.save();
