@@ -2,7 +2,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import styles from "./styles.module.css";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 const SubmitButton = ({ loading, loadingText, text }) => {
   return (
@@ -27,7 +27,6 @@ const SubmitButton = ({ loading, loadingText, text }) => {
     </button>
   );
 };
-
 
 SubmitButton.propTypes = {
   loading: PropTypes.bool,
