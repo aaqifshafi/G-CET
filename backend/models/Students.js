@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the schema for the Student model
 const studentSchema = new mongoose.Schema({
-
+    forms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Form' }],
     firstName: {
         type: String,
         required: true
@@ -78,7 +78,10 @@ const studentSchema = new mongoose.Schema({
 
     },
     enrollmentNumber: {
-        type: String
+        type: String,
+        required: true,
+        unique: true
+
 
     }
 

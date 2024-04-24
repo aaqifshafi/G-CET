@@ -26,18 +26,33 @@ import {
   faVenusMars,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { useRouter } from "next/navigation"; // Corrected import
-import { type } from "os";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Form from "../form/page";
-import { get } from "http";
 
 const apiURL = process.env.NEXT_PUBLIC_API_HOST;
 
 const StudentForm = () => {
   // Next router
-  const propValue = "";
+
+  function generateFormNumber() {
+    // Get current date and time
+    const currentDate = new Date();
+    const randomNumber = Math.floor(Math.random() * 900000) + 100000;
+
+    // Create a string with hyphens inserted
+    const dateString = currentDate.toISOString().slice(0, 10).replace(/-/g, "");
+    const timeString = currentDate.toTimeString().slice(0, 8).replace(/:/g, "");
+    const randomString = randomNumber.toString();
+
+    // Combine all parts to create the 16-digit form number
+    const formNumber = `${randomString.substr(
+      0,
+      4
+    )}-${dateString}-${timeString}-${randomString.substr(4, 6)}`;
+
+    return formNumber;
+  }
+
   const router = useRouter();
 
   // Define a function to receive data from the child component
@@ -67,6 +82,7 @@ const StudentForm = () => {
     pincode: getData("pincode"),
     state: getData("state"),
     gender: getData("gender"),
+    formNumber: generateFormNumber(),
     religion: getData("religion"),
     category: getData("category"),
   });
@@ -125,6 +141,7 @@ const StudentForm = () => {
         gender: formData.gender,
         religion: formData.religion,
         category: formData.category,
+        formNumber: formData.formNumber,
       }),
     };
 
