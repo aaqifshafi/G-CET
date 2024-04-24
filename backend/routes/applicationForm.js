@@ -13,7 +13,6 @@ router.post('/student/form', async (req, res) => {
 
         //Try  Updating the student document in the database
         const filter = { email: email };
-        console.log(formData);
         const student = await Students.findOneAndUpdate(filter, formData, { new: true, runValidators: true });
         if (!student) {
             // If no student found with the provided email, return a 404 response
@@ -25,8 +24,14 @@ router.post('/student/form', async (req, res) => {
 
                 return res.status(404).json({ message: 'Form already exists', success: false });
             } else {
-
-                const newForm = new Form(formData);
+                const data = {
+                    enrollmentNumber: enrollmentNumber,
+                    currentSem: currentSem,
+                    formNumber: formData.formNumber,
+                    email: email,
+                }
+                console.log(data);
+                const newForm = new Form(data);
                 // Save the new form document
                 const savedForm = await newForm.save();
                 // Update the student document to add the reference to the new form
