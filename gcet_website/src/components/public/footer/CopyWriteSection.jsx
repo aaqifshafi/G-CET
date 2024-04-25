@@ -8,7 +8,7 @@ const CopyWriteSection = () => {
           href="https://github.com/aaqifshafi"
           className="hover:text-primary-regular duration-500"
         >
-          Aaqif Shafi
+          Dept of CSE
         </a>
       </p>
     </div>
