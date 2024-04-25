@@ -1,40 +1,31 @@
 const mongoose = require('mongoose');
 
-// Define the schema for the Student model
-const studentSchema = new mongoose.Schema({
+// Define the schema for the Resultnmodel
+const resultSchema = new mongoose.Schema({
 
-    firstName: {
-        type: String,
-        required: true
+    semester: Number,
+    result: [{ subject: String, maxMarks: Number, marksObtained: Number, }],
+    link: String,
+    Teachers: {
+        type: Schema.Types.ObjectId,
+        refPath: 'uploaderModel'
     },
-    lastName: {
-        type: String,
-        required: true
-    },
-
-    program: {
-        type: String,
-        required: true
-    },
-    fatherName: {
-        type: String,
-
-    },
-
-    currentSem: {
-        type: String
-
-    },
-    enrollmentNumber: {
-        type: String
-
-    }
-
+    uploaderModel: Teachers
 
 });
 
-// Create the Student model from the schema
-const Student = mongoose.model('Student', studentSchema);
+function passOrFail(score, totalMarks) {
+    // Calculate percentage
+    const percentage = (score / totalMarks) * 100;
 
-// Export the Student model
-module.exports = Student;
+    // Check if percentage is above 40%
+    if (percentage > 40) {
+        return "Pass";
+    } else {
+        return "Fail";
+    }
+}
+const Result = mongoose.model('Result', resultSchema);
+
+
+module.exports = Result;
