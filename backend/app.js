@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt'); // For password hashing
 const Student = require('./models/Students');
 const authRoutes = require('./routes/authRoutes');
+const myApplications = require('./routes/myApplications');
 const applicationForm = require('./routes/applicationForm');
 const feedback = require('./routes/feedback');
 const notice = require('./routes/notice');
@@ -25,7 +26,7 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/')
-app.use('/', authRoutes, applicationForm, feedback, notice);
+app.use('/', authRoutes, applicationForm, feedback, notice, myApplications);
 
 
 // Route for admin sign-in
