@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Student = require('../models/Students');
 const Teacher = require('../models/Teachers');
+const Feedback = require('../models/Feedback');
 const mongoose = require('mongoose');
 const router = express.Router();
 const authenticateToken = require('./authMiddleware');
@@ -154,9 +155,8 @@ router.post('/admin/login', async (req, res) => {
             if (!teacher) {
                 return res.status(404).json({ error: 'Teacher not found' });
             }
-
-
-            res.status(200).json({ success: true, teacher });
+            const feedback = await Feedback.find();
+            res.status(200).json({ success: true, teacher, feedback });
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Internal server error' });

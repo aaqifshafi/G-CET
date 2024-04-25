@@ -9,6 +9,7 @@ const AdminState = (props) => {
   const [isUserLogin, setIsUserLogin] = useState(false);
   const [adminDetails, setAdminDetails] = useState({});
   const [dataFetching, setDataFetching] = useState(true);
+  const [feedback, setFeedback] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -31,11 +32,10 @@ const AdminState = (props) => {
 
       const data = await res.json();
       if (data.success) {
-        console.log(data);
         setDataFetching(false);
         setIsUserLogin(true);
         setAdminDetails(data.teacher);
-        console.log(data.admin);
+        setFeedback(data.feedback);
       } else {
         setIsUserLogin(false);
         localStorage.removeItem("authorization");
@@ -51,7 +51,7 @@ const AdminState = (props) => {
 
   return (
     <adminContext.Provider
-      value={{ isUserLogin, adminDetails, dataFetching, fetchData }}
+      value={{ isUserLogin, adminDetails, feedback, dataFetching, fetchData }}
     >
       {/* eslint-disable-next-line react/prop-types */}
       {props.children}

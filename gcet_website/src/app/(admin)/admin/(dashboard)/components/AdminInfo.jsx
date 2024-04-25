@@ -14,7 +14,6 @@ import adminContext from "@/contexts/admin/adminContext";
 
 const AdminInfo = () => {
   const adminDetails = useContext(adminContext).adminDetails;
-  //   console.log(adminDetails);
 
   return (
     <div className=" border-blue-900 rounded-md bg-secondary py-4 px-2 shadow-inner">
