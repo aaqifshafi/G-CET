@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import InputBox from "@/components/InputBox";
 import SubmitButton from "@/components/SubmitButton";
 import Toast from "@/components/Toast";
+const { customAlphabet, random } = require("nanoid");
 
 import { useContext } from "react";
 import studentContext from "@/contexts/student/studentContext";
@@ -32,23 +33,23 @@ import { useState } from "react";
 const apiURL = process.env.NEXT_PUBLIC_API_HOST;
 
 const StudentForm = () => {
-  // Next router
-
   function generateFormNumber() {
+    const alphabet = "0123456789";
     // Get current date and time
+    const nanoid = customAlphabet(alphabet, 8); // Changed the length to 8 for the first part
+    let formNumber = nanoid();
     const currentDate = new Date();
-    const randomNumber = Math.floor(Math.random() * 900000) + 100000;
+
+    // Extract day, month, and year
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const year = currentDate.getFullYear();
 
     // Create a string with hyphens inserted
-    const dateString = currentDate.toISOString().slice(0, 10).replace(/-/g, "");
-    const timeString = currentDate.toTimeString().slice(0, 8).replace(/:/g, "");
-    const randomString = randomNumber.toString();
+    const dateString = `${day}${month}${year}`;
 
-    // Combine all parts to create the 16-digit form number
-    const formNumber = `${randomString.substr(
-      0,
-      4
-    )}-${dateString}-${timeString}-${randomString.substr(4, 6)}`;
+    // Combine all parts to create the form number
+    formNumber = `${formNumber}-${dateString}`;
 
     return formNumber;
   }
@@ -281,7 +282,6 @@ const StudentForm = () => {
               max={8}
               min={1}
               id="currentSem"
-              value={formData.currentSem}
               icon={faBookReader}
               onChangeHandler={onChangeHandler}
               Required={true}
