@@ -72,7 +72,7 @@ const ChatBox = ({ formData }) => {
             type="text"
             value={message}
             onChange={handleMessageChange}
-            placeholder="Powered by ChatGPT..."
+            placeholder="Type or Paste Syllabus here..."
           />
 
           <button
