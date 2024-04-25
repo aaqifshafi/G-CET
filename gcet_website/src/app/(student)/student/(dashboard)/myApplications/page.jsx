@@ -1,14 +1,16 @@
 "use client";
-
+import studentContext from "@/contexts/student/studentContext";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Heading3 from "@/components/Heading3";
+import { useContext } from "react";
 
 const apiURL = process.env.NEXT_PUBLIC_API_HOST;
 
 const MyApplications = () => {
+  const studentDetails = useContext(studentContext).studentDetails;
+  const rollNo = studentDetails?.enrollmentNumber;
+
   const [applications, setApplications] = useState([]);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchApplications = async () => {
@@ -19,7 +21,7 @@ const MyApplications = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            enrollmentNumber: "190314",
+            enrollmentNumber: rollNo,
           }),
         });
 

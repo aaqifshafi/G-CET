@@ -6,6 +6,26 @@ import Toast from "@/components/Toast";
 import { useRouter } from "next/navigation"; // Corrected import
 import { useState } from "react";
 import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
+const { customAlphabet, random } = require("nanoid");
+
+function generateId() {
+  const alphabet = "0123456789";
+  // Get current date and time
+  const nanoid = customAlphabet(alphabet, 6); // Changed the length to 8 for the first part
+  let feedbackId = nanoid();
+  const currentDate = new Date();
+
+  // Extract day, month, and year
+  const day = String(currentDate.getDate()).padStart(2, "0");
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const year = currentDate.getFullYear();
+  // Create a string with hyphens inserted
+  const dateString = `${day}${month}${year}`;
+  // Combine all parts to create the form number
+  feedbackId = `${feedbackId}-${dateString}`;
+
+  return feedbackId;
+}
 
 const apiURL = process.env.NEXT_PUBLIC_API_HOST;
 
