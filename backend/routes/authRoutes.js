@@ -155,6 +155,7 @@ router.post('/admin/login', async (req, res) => {
                 return res.status(404).json({ error: 'Teacher not found' });
             }
 
+
             res.status(200).json({ success: true, teacher });
         } catch (err) {
             console.error(err);
