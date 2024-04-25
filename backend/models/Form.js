@@ -16,9 +16,16 @@ const FormSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    createdAt: {
+        type: Date,
+        immutable: true,
+        default: Date.now,
+    },
+    status: {
+        type: Boolean,
+        default: false,
+
+    },
 });
 
-// Create a model from the schema
-const Form = mongoose.model('Form', FormSchema);
-
-module.exports = Form;
+module.exports = mongoose.model('Form', FormSchema);
