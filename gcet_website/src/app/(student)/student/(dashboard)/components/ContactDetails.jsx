@@ -3,23 +3,12 @@ import Image from "next/image";
 import AVATAR from "../user.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAddressBook,
   faBuildingCircleArrowRight,
-  faCalendarDays,
   faEnvelope,
   faMapPin,
-  faFlag,
-  faFlagCheckered,
-  faGraduationCap,
-  faHouse,
   faHouseChimney,
   faHouseFlag,
-  faMosque,
   faPhone,
-  faStreetView,
-  faUser,
-  faUserTie,
-  faVenusMars,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import studentContext from "@/contexts/student/studentContext";

@@ -16,9 +16,6 @@ const StudentDashboard = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="min-h-fit sm:mx-2 border-2 border-primary-regular rounded-md overflow-x-auto">
         <h1 className="bg-primary-regular p-2 sm:p-4 text-secondary font-medium">
           Contact Details
         </h1>
@@ -28,8 +25,6 @@ const StudentDashboard = () => {
             <ContactDetails />
           </div>
         </div>
-      </div>
-      <div className="min-h-fit sm:mx-2 border-2 border-primary-regular rounded-md overflow-x-auto">
         <h1 className="bg-primary-regular p-2 sm:p-4 text-secondary font-medium">
           Personal Details
         </h1>

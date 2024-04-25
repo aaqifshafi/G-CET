@@ -13,8 +13,7 @@ const Applications = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            // Assuming 'token' is the authorization token stored in the browser
-            Authorization: `Bearer ${token}`,
+            //TODO: Check Auuthorization header Barer token
           },
         });
 

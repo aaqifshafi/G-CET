@@ -11,18 +11,8 @@ const { customAlphabet, random } = require("nanoid");
 function generateId() {
   const alphabet = "0123456789";
   // Get current date and time
-  const nanoid = customAlphabet(alphabet, 6); // Changed the length to 8 for the first part
-  let feedbackId = nanoid();
-  const currentDate = new Date();
-
-  // Extract day, month, and year
-  const day = String(currentDate.getDate()).padStart(2, "0");
-  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  const year = currentDate.getFullYear();
-  // Create a string with hyphens inserted
-  const dateString = `${day}${month}${year}`;
-  // Combine all parts to create the form number
-  feedbackId = `${feedbackId}-${dateString}`;
+  const nanoid = customAlphabet(alphabet, 8); // Changed the length to 8 for the first part
+  const feedbackId = nanoid();
 
   return feedbackId;
 }
@@ -60,12 +50,12 @@ const FeedbackForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-
       // All fields are filled, proceed with form submission
       body: JSON.stringify({
         name,
         email,
         feedback,
+        feedbackId: generateId(), // Generate a unique feedback ID
       }),
     };
 

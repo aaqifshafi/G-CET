@@ -51,12 +51,23 @@ const AdminInfo = () => {
           <FontAwesomeIcon className="mr-2" icon={faEnvelope} />
           Email
         </span>
-        <span className="col-span-3">{adminDetails?.email}</span>
+        <a
+          className="col-span-3  text-blue-500 hover:text-blue-800 visited:text-purple-600"
+          href={`mailto:${adminDetails?.email}`}
+        >
+          {adminDetails?.email}
+        </a>
+
         <span className="text-blue-900 col-span-2">
           <FontAwesomeIcon className="mr-2" icon={faPhone} />
           Phone
         </span>
-        <span className="col-span-3">{adminDetails?.phone}</span>
+        <a
+          className="col-span-3 text-blue-500 hover:text-blue-800 visited:text-purple-600"
+          href={`tel:${adminDetails?.phoneNumber}`}
+        >
+          {adminDetails?.phoneNumber}
+        </a>
       </div>
     </div>
   );

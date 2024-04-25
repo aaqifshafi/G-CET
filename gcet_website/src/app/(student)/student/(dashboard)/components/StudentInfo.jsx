@@ -6,11 +6,8 @@ import {
   faBookOpenReader,
   faBuildingColumns,
   faCalendarDays,
-  faEnvelope,
   faGraduationCap,
   faIdCard,
-  faMosque,
-  faPhone,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";

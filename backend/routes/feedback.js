@@ -5,17 +5,17 @@ const Feedback = require('../models/Feedback');
 // Initialize Express router
 const router = express.Router();
 
-
 // Endpoint to handle feedback submission
 router.post('/feedback', async (req, res) => {
     try {
-        const { name, email, feedback } = req.body;
+        const { name, email, feedback, feedbackId } = req.body;
 
         // Create new feedback document
         const feedbackData = new Feedback({
             name,
             email,
             feedback,
+            feedbackId,
         });
 
         // Save feedback to the database
@@ -27,5 +27,7 @@ router.post('/feedback', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error', sucess: false });
     }
 });
+
+
 
 module.exports = router;
