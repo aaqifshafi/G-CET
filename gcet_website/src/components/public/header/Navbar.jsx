@@ -31,11 +31,7 @@ const Navbar = () => {
       name: "Home",
       path: "/",
     },
-    {
-      isDropDown: false,
-      name: "About College",
-      path: "/about",
-    },
+
     {
       isDropDown: true,
       name: "Departments",
@@ -60,19 +56,24 @@ const Navbar = () => {
       name: "Notice",
       path: "/notice",
     },
-    {
-      isDropDown: true,
-      name: "Training & Placement",
-      path: "/programs",
-      dropDownItems: [
-        { name: "Training", path: "/pg-program" },
-        { name: "Placement", path: "/pg-program" },
-      ],
-    },
+    // {
+    //   isDropDown: true,
+    //   name: "Training & Placement",
+    //   path: "/programs",
+    //   dropDownItems: [
+    //     { name: "Training", path: "/pg-program" },
+    //     { name: "Placement", path: "/pg-program" },
+    //   ],
+    // },
     {
       isDropDown: false,
       name: "Feedback",
       path: "/feedback",
+    },
+    {
+      isDropDown: false,
+      name: "About College",
+      path: "/about",
     },
   ];
 

@@ -1,5 +1,4 @@
 "use client";
-
 import {
   faArrowRightFromBracket,
   faDatabase,
@@ -10,9 +9,14 @@ import {
   faUniversity,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { on } from "events";
 import { useRouter } from "next/navigation";
+import studentContext from "@/contexts/student/studentContext";
 import PropTypes from "prop-types";
-
+const url = process.env.NEXT_PUBLIC_API_HOST;
+const StudentInfo = () => {
+  const studentDetails = useContext(studentContext).studentDetails;
+};
 const NavBar = ({ isMenuOpen }) => {
   const router = useRouter();
 
@@ -20,6 +24,26 @@ const NavBar = ({ isMenuOpen }) => {
     localStorage.removeItem("authorization");
     sessionStorage.removeItem("authorization");
     router.replace("/student/login");
+  };
+  const getForms = async () => {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          email: studentDetails.email,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        return data;
+      } else {
+        console.error("Request Failed");
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
   };
 
   const NAV_ITEMS = [
@@ -37,6 +61,9 @@ const NavBar = ({ isMenuOpen }) => {
       name: "Submitted Application",
       icon: faDatabase,
       link: "/student/myApplications",
+      onClick: (email) => {
+        getForms(email);
+      },
     },
     {
       name: "Payment",

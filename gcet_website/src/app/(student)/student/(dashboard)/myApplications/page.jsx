@@ -1,7 +1,7 @@
 import StudentForm from "../components/StudentForm";
 import Heading3 from "@/components/Heading3";
 
-const myApplications = ({ applications }) => {
+const MyApplications = ({ applications }) => {
   return (
     <div className="min-h-fit  sm:mx-2 border-2 rounded-md border-primary-regular overflow-x-auto">
       <h1 className="bg-primary-regular p-2 sm:p-4 text-secondary font-medium">
@@ -42,7 +42,7 @@ const myApplications = ({ applications }) => {
   );
 };
 
-export default myApplications;
+export default MyApplications;
 
 //Eg to use data coming from backend
 {

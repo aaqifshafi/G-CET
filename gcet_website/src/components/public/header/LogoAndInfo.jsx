@@ -10,7 +10,7 @@ const LogoAndInfo = () => {
           <Image src={"/logo.webp"} alt="G-CET" width={400} height={119} />
         </Link>
         <div className="hidden md:block">
-          <Button href={"/student/login"} text={"Log In"} />
+          <Button href={"/student/login"} text={"Student Portal"} />
         </div>
       </div>
     </div>

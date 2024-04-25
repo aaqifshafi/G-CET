@@ -11,12 +11,12 @@ const TopHeaderMenu = () => {
           Welcome to Govt. College of Engineering Technology, Safapora
         </h2>
         <Link href={"/"} className="md:hidden">
-          <Image src={"/logo.webp"} height={45} width={150} alt="G-CET" />
+          <Image src={"/logo.webp"} height={45} width={150} alt="G-CET Logo" />
         </Link>
         <div className="hidden md:block">
           <SocialMediaLink />
           <span>
-            <Button href={"/admin/login"} text={"College Login"} />
+            <Button href={"/admin/login"} text={"FACULTY PORTAL"} />
           </span>
         </div>
       </div>

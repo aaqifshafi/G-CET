@@ -10,22 +10,22 @@ const Hero = () => {
         {/* ========== Section Text START ========== */}
         <h2 className="flex flex-col text-4xl md:text-5xl lg:text-6xl leading-[3rem] md:leading-[4rem] lg:leading-[5rem] font-bold ">
           <span className={`${styles.slideRightAnimation} tracking-wider`}>
-            Under Construction
+            Govt. College of
           </span>
           <span className={`${styles.slideRightAnimation} tracking-wider`}>
-            Website
+            Engineering &
           </span>
-          Write Info
+          Technology,
           <span className={`${styles.slideRightAnimation} tracking-wider`}>
-            Here!
+            Safapora
           </span>
         </h2>
         <p className={`${styles.slideUpAnimation} leading-8 my-4 max-w-sm`}>
-          Write a small Tag line here !!!!!
+          Located on the banks of Manasbal Lake !
         </p>
 
         <div className={`${styles.slideUpAnimation} my-8`}>
-          <Button text={"EXPLORE &rarr;"} href={"#"} />
+          <Button text={"Know More &rarr;"} href={"/about"} />
         </div>
         {/* ========== Section Text END ========== */}
       </div>

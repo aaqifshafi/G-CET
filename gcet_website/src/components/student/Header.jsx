@@ -7,11 +7,11 @@ const Header = () => {
       <nav className="max-w-screen-xl mx-auto my-3 flex items-center gap-8 flex-col justify-center sm:flex-row sm:justify-between">
         <Link href={"/"}>
           <Image
-            className="invert"
+            className=""
             src="/logo.webp"
             alt="logo"
             width={250}
-            height={74}
+            height={100}
           />
         </Link>
         <ul className="flex gap-8 text-white">
