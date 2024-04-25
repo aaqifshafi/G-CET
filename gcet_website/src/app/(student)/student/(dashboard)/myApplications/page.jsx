@@ -1,9 +1,46 @@
-import StudentForm from "../components/StudentForm";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Heading3 from "@/components/Heading3";
 
-const MyApplications = ({ applications }) => {
+const apiURL = process.env.NEXT_PUBLIC_API_HOST;
+
+const MyApplications = () => {
+  const [applications, setApplications] = useState([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        const response = await fetch(`${apiURL}/student/myApplications`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            enrollmentNumber: "190314",
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch applications");
+        }
+
+        const data = await response.json();
+        setApplications(data.forms); // Assuming the response data contains the forms array
+      } catch (error) {
+        console.error("Error fetching applications:", error);
+      }
+    };
+
+    fetchApplications();
+  }, []);
+  const convertToLocalDate = (timestampString) => {
+    return new Date(timestampString);
+  };
   return (
-    <div className="min-h-fit  sm:mx-2 border-2 rounded-md border-primary-regular overflow-x-auto">
+    <div className="min-h-fit sm:mx-2 border-2 rounded-md border-primary-regular overflow-x-auto">
       <h1 className="bg-primary-regular p-2 sm:p-4 text-secondary font-medium">
         Submitted Applications
       </h1>
@@ -11,14 +48,13 @@ const MyApplications = ({ applications }) => {
         <Heading3 headingText={"Admission Forms"} />
         <div className="border  my-4 bg-secondary overflow-x-auto">
           <table className="max-w-full w-full min-w-max">
+            {/* Table header */}
             <thead>
               <tr className="bg-blue-900 text-secondary">
                 <th className="border border-gray-300 px-4 py-2">
-                  Application ID
+                  Form Number
                 </th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Student Name
-                </th>
+                <th className="border border-gray-300 px-4 py-2">Semester</th>
                 <th className="border border-gray-300 px-4 py-2">
                   Roll Number
                 </th>
@@ -30,12 +66,37 @@ const MyApplications = ({ applications }) => {
                 </th>
               </tr>
             </thead>
-            {/* Fetch DATA FROM BACKEND HERE */}
+            {/* Table body */}
+            <tbody>
+              {applications.map((application) => (
+                <tr key={application.formNumber}>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {application.formNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {application.currentSem}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {application.enrollmentNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {convertToLocalDate(
+                      application.createdAt
+                    ).toLocaleDateString()}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {application.status ? "Approved" : "Pending"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
-
-          <div className="h-36 w-full flex justify-center items-center">
-            There is not any Application
-          </div>
+          {/* Show message if there are no applications */}
+          {applications.length === 0 && (
+            <div className="h-36 w-full flex justify-center items-center">
+              There are no applications
+            </div>
+          )}
         </div>
       </section>
     </div>
@@ -43,41 +104,3 @@ const MyApplications = ({ applications }) => {
 };
 
 export default MyApplications;
-
-//Eg to use data coming from backend
-{
-  /* <tbody>
-{applications.map((application) => (
-  <tr key={application.id}>
-    <td className="border border-gray-300 px-4 py-2">
-      {application.id}
-    </td>
-    <td className="border border-gray-300 px-4 py-2">
-      {application.studentName}
-    </td>
-    <td className="border border-gray-300 px-4 py-2">
-      {application.enrollmentNo}
-    </td>
-    <td className="border border-gray-300 px-4 py-2">
-      {application.applicationDate}
-    </td>
-    <td className="border border-gray-300 px-4 py-2">
-      {application.applicationStatus}
-    </td>
-  </tr>
-))}
-</tbody>
-</table>
-{applications.length === 0 && (
-<div className="h-36 w-full flex justify-center items-center">
-There is not any Application
-</div>
-)}
-</div>
-</section>
-</div>
-);
-};
-
-export default myApplications; */
-}
