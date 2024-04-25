@@ -28,11 +28,14 @@ const AdminState = (props) => {
       };
 
       const res = await fetch(`${apiURL}/admin/verifyAdmin`, option);
+
       const data = await res.json();
       if (data.success) {
+        console.log(data);
         setDataFetching(false);
         setIsUserLogin(true);
-        setAdminDetails(data.admin);
+        setAdminDetails(data.teacher);
+        console.log(data.admin);
       } else {
         setIsUserLogin(false);
         localStorage.removeItem("authorization");
