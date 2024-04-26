@@ -109,7 +109,7 @@ const PaperWizard = () => {
             </select>
           </div>
         </div>
-        {console}
+
         <ChatBox formData={formData} />
       </div>
       {isToastVisible && <Toast type={toast.type} message={toast.message} />}
