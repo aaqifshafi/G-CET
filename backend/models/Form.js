@@ -26,6 +26,10 @@ const FormSchema = new mongoose.Schema({
         default: false,
 
     },
+    feeStatus: {
+        type: String,
+        default: "Not Paid",
+    },
 });
 
 module.exports = mongoose.model('Form', FormSchema);

@@ -122,8 +122,9 @@ const Dashboard = () => {
                   Complaint Date
                 </th>
                 <th className="border border-gray-300 px-4 py-2">Message</th>
-                <th className="border border-gray-300 px-4 py-2">Status</th>
-                <th className="border border-gray-300 px-4 py-2">Action</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Complaint Date
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -143,21 +144,6 @@ const Dashboard = () => {
                   <td className="border border-gray-300 px-4 py-2">
                     {feedbackItem.feedback}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {feedbackItem.status ? "Resolved" : "Pending"}
-                  </td>
-                  {!feedbackItem.status ? (
-                    <td className="border border-gray-300 p-2">
-                      <button
-                        className="bg-primary-regular text-secondary  p-2 rounded-full"
-                        onClick={() => handleClick(feedbackItem.feedbackId)}
-                      >
-                        Mark Resolved
-                      </button>
-                    </td>
-                  ) : (
-                    <td className="border border-gray-300 px-4 py-2">Closed</td>
-                  )}
                 </tr>
               ))}
             </tbody>

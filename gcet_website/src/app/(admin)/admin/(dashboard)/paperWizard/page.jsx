@@ -22,16 +22,16 @@ const PaperWizard = () => {
   };
   // TODO DEFINE UPLOAD FUNCTION FOR ON FORM SUBMIT
 
-  const uploadNotice = (e) => {
-    e.preventDefault();
+  // const validateForm = (e) => {
+  //   e.preventDefault();
 
-    // Validate form data
-    if (!formData.marks || !formData.difficulty || !formData.duration) {
-      setToast({ type: "error", message: "Please fill all required fields" });
-      setIsToastVisible(true);
-      return;
-    }
-  };
+  //   // Validate form data
+  //   if (!formData.marks || !formData.difficulty || !formData.duration) {
+  //     setToast({ type: "error", message: "Please fill all required fields" });
+  //     setIsToastVisible(true);
+  //     return;
+  //   }
+  //};
 
   return (
     <div className="min-h-fit sm:mx-2 border-2 rounded-md border-primary-regular overflow-x-auto">
@@ -109,7 +109,7 @@ const PaperWizard = () => {
             </select>
           </div>
         </div>
-
+        {console}
         <ChatBox formData={formData} />
       </div>
       {isToastVisible && <Toast type={toast.type} message={toast.message} />}

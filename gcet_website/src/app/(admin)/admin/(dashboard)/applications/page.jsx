@@ -5,6 +5,9 @@ import React, { useState, useEffect } from "react";
 const apiURL = process.env.NEXT_PUBLIC_API_HOST;
 
 const Applications = () => {
+  const convertToLocalDate = (timestampString) => {
+    return new Date(timestampString);
+  };
   const [forms, setForms] = useState([]);
   useEffect(() => {
     const fetchForms = async () => {
@@ -44,9 +47,7 @@ const Applications = () => {
                 <th className="border border-gray-300 px-4 py-2">
                   Application ID
                 </th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Student Name
-                </th>
+                <th className="border border-gray-300 px-4 py-2">Semester</th>
                 <th className="border border-gray-300 px-4 py-2">Roll No.</th>
                 <th className="border border-gray-300 px-4 py-2">
                   Submission Date
@@ -73,6 +74,9 @@ const Applications = () => {
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {form.status ? "Approved" : "Pending"}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {form.feeStatus}
                   </td>
                 </tr>
               ))}

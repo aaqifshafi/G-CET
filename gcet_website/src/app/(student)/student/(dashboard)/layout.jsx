@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
               {/* When isMenuOpen==true then render full logo else render only icon */}
               {isMenuOpen ? (
                 <Image
-                  className="filter invert "
+                  className=" "
                   src={"/logo.webp"}
                   height={45}
                   width={150}
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
                 />
               ) : (
                 <Image
-                  className="hidden sm:inline-block filter invert mx-auto"
+                  className="hidden sm:inline-block mx-auto"
                   src={"/mcc-icon.png"}
                   height={45}
                   width={45}
@@ -77,7 +77,7 @@ export default function RootLayout({ children }) {
             <Header
               setIsMenuOpen={setIsMenuOpen}
               isMenuOpen={isMenuOpen}
-              studentName={context.studentDetails?.firstName || "User"}
+              studentName={" " + context.studentDetails?.firstName || "user"}
             />
 
             {/* ======= Main Content Start ======= */}
