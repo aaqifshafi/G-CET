@@ -34,10 +34,20 @@ const ChatBox = ({ formData }) => {
         body: JSON.stringify({
           model: model,
           messages: [
-            { role: "user", content: message },
+            ...allMessages,
+            {
+              role: "user",
+              content: message,
+            },
             {
               role: "assistant",
-              content: "Generate a Question paper for Examination...",
+              content: JSON.stringify({
+                message:
+                  "Generate a Question paper for Examination for the following syllabus with 25% marks distribution to each UNIT, Divide the paper in 3 Sections Long Answer Type , Short Answer Type and Multiple choice Questions. Mention Qustion Paper Heading at the top of the paper with maximum marks and duration of the exam.The Dificulty level of paper should be",
+                difficulty: formData.difficulty,
+                maxMarks: formData.maxMarks,
+                duration: formData.duration,
+              }),
             },
           ],
         }),
