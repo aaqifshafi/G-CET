@@ -100,7 +100,7 @@ const PendingApplications = () => {
                   {!form.status ? (
                     <td className="border border-gray-300 p-2">
                       <button
-                        className="bg-primary-regular text-secondary  p-2 rounded-full"
+                        className="bg-primary-regular text-xs text-secondary  p-2 rounded-full"
                         onClick={() => handleAccept(form.formNumber)}
                       >
                         Accept
@@ -112,7 +112,7 @@ const PendingApplications = () => {
                   {!form.status ? (
                     <td className="border border-gray-300 p-2">
                       <button
-                        className="bg-primary-regular text-secondary  p-2 rounded-full"
+                        className="bg-primary-regular text-xs text-secondary  p-2 rounded-full"
                         onClick={() => handleAccept(form.formNumber)}
                       >
                         Defect
