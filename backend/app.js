@@ -8,6 +8,7 @@ const myApplications = require('./routes/myApplications');
 const applicationForm = require('./routes/applicationForm');
 const feedback = require('./routes/feedback');
 const notice = require('./routes/notice');
+const payment = require('./routes/payment');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,7 +22,7 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/')
-app.use('/', authRoutes, applicationForm, feedback, notice, myApplications);
+app.use('/', authRoutes, applicationForm, feedback, notice, myApplications, payment);
 
 
 // Route for admin sign-in

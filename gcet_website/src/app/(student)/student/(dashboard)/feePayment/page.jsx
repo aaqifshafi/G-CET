@@ -6,22 +6,41 @@ import Heading2 from "@/components/Heading2";
 import React from "react";
 import SubmitButton from "@/components/SubmitButton";
 
-const data = [
-  {
-    name: "John Doe",
-    applicationId: "12345",
-    semester: "1st",
-    email: "jingoor@gct.com",
-    enrollmentNumber: "12345",
-    // Add more fields if needed
-  },
-];
+const apiURL = process.env.NEXT_PUBLIC_API_HOST;
+
+const data = {
+  name: "John Doe",
+  applicationId: "12345",
+  semester: "1st",
+  email: "jingoor@gct.com",
+  enrollmentNumber: "12345",
+  // Add more fields if needed
+};
 const generateTXNID = () => {
   return Math.floor(Math.random() * 1000000000);
 };
-const totalFee = 6900;
+const amount = 6900;
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ details: data, amount: amount }),
+};
 const handleSubmit = (e) => {
   // Add your logic here for Payment Gateway Integration
+
+  fetch(`${apiURL}/create-payment-session`, options)
+    .then((res) => {
+      if (res.ok) return res.json();
+      return res.json.then((json) => Promise.reject(json));
+    })
+    .then(({ url }) => {
+      window.location = url;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const FeePayment = (dataFromAPI) => {
@@ -35,7 +54,7 @@ const FeePayment = (dataFromAPI) => {
         <div className="h-0.5 max-w-[6rem] bg-primary-regular mx-auto"></div>
       </div>
       <div className="border m-4 bg-secondary overflow-x-auto p-1 sm:w-3/4 mx-auto">
-        <table className="max-w-full w-full min-w-max">
+        {/* <table className="max-w-full w-full min-w-max">
           <tbody>
             {data.map((item, index) => (
               <React.Fragment key={index}>
@@ -94,7 +113,7 @@ const FeePayment = (dataFromAPI) => {
                 <td className="border border-gray-300 px-4 py-2 font-semibold">
                   Total Fee:
                 </td>
-                <td className="border border-gray-300 px-4 py-2">{totalFee}</td>
+                <td className="border border-gray-300 px-4 py-2">{amount}</td>
               </tr>
             )}
 
@@ -106,7 +125,7 @@ const FeePayment = (dataFromAPI) => {
               </tr>
             )}
           </tbody>
-        </table>
+        </table> */}
         <div className="m-2 flex justify-center items-center ">
           <button
             className="w-1/4 duration-500 rounded-sm px-4 py-2 uppercase text-white bg-blue-900"

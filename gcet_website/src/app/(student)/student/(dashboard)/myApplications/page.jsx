@@ -1,11 +1,11 @@
 "use client";
 import studentContext from "@/contexts/student/studentContext";
 import React, { useState, useEffect } from "react";
-
 import Heading3 from "@/components/Heading3";
 import { useContext } from "react";
 
 const apiURL = process.env.NEXT_PUBLIC_API_HOST;
+console.log(apiURL);
 
 const MyApplications = () => {
   const studentDetails = useContext(studentContext).studentDetails;

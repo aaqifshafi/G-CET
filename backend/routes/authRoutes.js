@@ -9,8 +9,6 @@ const authenticateToken = require('./authMiddleware');
 require('dotenv').config();
 
 
-
-const app = express();
 // Student Sign Up Route 
 router.post('/student/signup', async (req, res) => {
     try {
