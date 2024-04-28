@@ -1,12 +1,8 @@
-// require('dotenv').config();
 const express = require('express');
-const router = express.Router();
+require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt'); // For password hashing
-const Student = require('./models/Students');
 const authRoutes = require('./routes/authRoutes');
 const myApplications = require('./routes/myApplications');
 const applicationForm = require('./routes/applicationForm');
@@ -14,8 +10,7 @@ const feedback = require('./routes/feedback');
 const notice = require('./routes/notice');
 
 const app = express();
-const PORT = 5000;
-// const env = process.env.ACCESS_TOKEN_SECRET;
+const PORT = process.env.PORT;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());

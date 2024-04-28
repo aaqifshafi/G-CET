@@ -4,9 +4,11 @@ const jwt = require('jsonwebtoken');
 const Student = require('../models/Students');
 const Teacher = require('../models/Teachers');
 const Feedback = require('../models/Feedback');
-const mongoose = require('mongoose');
 const router = express.Router();
 const authenticateToken = require('./authMiddleware');
+require('dotenv').config();
+
+
 
 const app = express();
 // Student Sign Up Route 
@@ -63,7 +65,7 @@ router.post('/student/login', async (req, res) => {
         }
 
         // Generate a JSON Web Token
-        const token = jwt.sign({ studentId: student._id }, 'your_secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ studentId: student._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
         res.status(200).json({ success: true, message: 'Login successful', authorization: token });
 
     } catch (err) {
@@ -141,7 +143,7 @@ router.post('/admin/login', async (req, res) => {
         }
 
         // Generate a JSON Web Token
-        const token = jwt.sign({ teacherId: teacher._id }, 'your_secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ teacherId: teacher._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
         res.status(200).json({ success: true, message: 'Login successful', authorization: token });
 
     } catch (err) {
