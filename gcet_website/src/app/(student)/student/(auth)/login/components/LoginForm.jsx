@@ -143,7 +143,11 @@ const LoginForm = () => {
           <label htmlFor="rememberMe">Remember me!</label>
         </div>
 
-        <SubmitButton loading={loading} text={"Login"} />
+        <SubmitButton
+          loadingText={"Logging you in"}
+          loading={loading}
+          text={"Login"}
+        />
       </form>
     </>
   );

@@ -4,6 +4,7 @@ const Form = require('../models/Form'); // Import the Form model
 const router = express.Router();
 
 
+
 router.post('/student/form', async (req, res) => {
     try {
         // Destructure the required properties from req.body
@@ -43,7 +44,7 @@ router.post('/student/form', async (req, res) => {
 
 
 
-                return res.status(200).json({ success: true, message: 'Form successfully submitted', student: populatedStudent });
+                return res.status(200).json({ success: true, message: 'Form Sucessfuly Saved', student: populatedStudent });
             }
         }
     } catch (error) {

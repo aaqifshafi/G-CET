@@ -4,11 +4,8 @@ import AVATAR from "../user.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
-  faEnvelope,
-  faGraduationCap,
   faHouse,
   faMosque,
-  faPhone,
   faUser,
   faUserTie,
   faVenusMars,

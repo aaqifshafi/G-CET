@@ -27,8 +27,12 @@ const FormSchema = new mongoose.Schema({
 
     },
     feeStatus: {
+        type: Boolean,
+        default: "false",
+    },
+    transactionId: {
         type: String,
-        default: "Not Paid",
+        default: null,
     },
 });
 

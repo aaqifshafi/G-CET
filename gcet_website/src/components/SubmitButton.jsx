@@ -4,7 +4,13 @@ import React from "react";
 import styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
-const SubmitButton = ({ loading, loadingText, text }) => {
+const SubmitButton = ({ loading, loadingText, text, onSubmit }) => {
+  const handleClick = () => {
+    if (onSubmit && typeof onSubmit === "function") {
+      onSubmit();
+    }
+  };
+
   return (
     <button
       disabled={loading}
@@ -15,6 +21,7 @@ const SubmitButton = ({ loading, loadingText, text }) => {
           : "cursor-pointer bg-opacity-100"
       }`}
       type="submit"
+      onClick={handleClick}
     >
       {loading ? (
         <>
@@ -32,6 +39,7 @@ SubmitButton.propTypes = {
   loading: PropTypes.bool,
   loadingText: PropTypes.string,
   text: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default React.memo(SubmitButton);

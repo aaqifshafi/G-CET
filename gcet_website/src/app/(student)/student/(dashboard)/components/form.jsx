@@ -190,7 +190,11 @@ const StudentForm = () => {
         <h1 className="text-center text-2xl uppercase my-3 font-bold">
           Semester Admission Form
         </h1>
-        <form className="flex flex-col gap-4" action="">
+        <form
+          onSubmit={handleFormSubmit}
+          className="flex flex-col gap-4"
+          action=""
+        >
           <div className="w-full flex-col flex gap-2">
             <label htmlFor="name">
               Name<span className="text-red-600">*</span>
@@ -578,8 +582,6 @@ const StudentForm = () => {
             <SubmitButton
               text="Save & Proceed to Payment"
               onSubmit={handleFormSubmit}
-              loadingText={"Saving..."}
-              loading={isLoading}
             />
           </div>
         </form>

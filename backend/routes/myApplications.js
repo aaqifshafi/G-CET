@@ -80,4 +80,28 @@ router.put('/admin/pending/update/:formNumber', async (req, res) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 });
+
+router.get('/student/forms/:enrollmentNumber', async (req, res) => {
+    try {
+        // Extract enrollment number from request parameters
+        const { enrollmentNumber } = req.params;
+
+        // Query database to find the latest form by enrollment number with feeStatus false
+        const form = await Form.findOne({ enrollmentNumber, feeStatus: false })
+            .sort({ createdAt: -1 })
+            .limit(1);
+
+
+        if (!form) {
+            return res.status(404).json({ error: 'Fill a Form first' });
+        }
+        res.json(form);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
 module.exports = router;
