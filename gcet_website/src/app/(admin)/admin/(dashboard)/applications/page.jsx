@@ -76,7 +76,7 @@ const Applications = () => {
                     {form.status ? "Approved" : "Pending"}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {form.feeStatus}
+                    {form.feeStatus ? "Paid" : "Unpaid"}
                   </td>
                 </tr>
               ))}
