@@ -66,6 +66,7 @@ const MyApplications = () => {
                 <th className="border border-gray-300 px-4 py-2">
                   Application Status
                 </th>
+                <th className="border border-gray-300 px-4 py-2">Fee Status</th>
               </tr>
             </thead>
             {/* Table body */}
@@ -88,6 +89,9 @@ const MyApplications = () => {
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {application.status ? "Approved" : "Pending"}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {application.feeStatus ? "Paid" : "Unpaid"}
                   </td>
                 </tr>
               ))}
