@@ -22,7 +22,6 @@ router.get('/notice', async (req, res) => {
 
 
 router.post("/admin/upload-notice", upload.single("file"), async (req, res) => {
-    console.log(req.file)
     const noticeData = {
         originalName: req.file.originalname,
         category: req.body.category,
