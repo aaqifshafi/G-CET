@@ -9,8 +9,8 @@ const url = process.env.SERVER_URL
 // GET route for /notice
 router.get('/notice', async (req, res) => {
     try {
-        // Fetch notices from the database
-        const notices = await Notice.find({}, 'category title date downloadLink').lean(); // Lean to get plain JavaScript objects instead of Mongoose Documents
+        // Fetch notices from the database, sorted by createdAt in descending order (newest first)
+        const notices = await Notice.find({}, 'category title date downloadLink').lean();
 
         // Send the notices to the frontend
         res.json(notices);
@@ -19,6 +19,7 @@ router.get('/notice', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
 
 
 router.post("/admin/upload-notice", upload.single("file"), async (req, res) => {
