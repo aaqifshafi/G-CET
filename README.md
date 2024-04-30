@@ -22,26 +22,57 @@ Install dependencies
   npm install
 ```
 
+Start the Front end server
+
+```bash
+  npm run dev
+```
+
+
+Now go back to mainin diractory and:
+
+```bash
+  cd backend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
 Start the server
 
 ```bash
   npm run dev
 ```
 
-## Environment Variables
+## Environment Variables - BACKEND
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, add the following environment variables to your .env file inside /backend directory
+
+`STRIPE_SECRET_KEY`
+
+`ACCESS_TOKEN_SECRET`
+
+`MONGO_URL`
+
+`CLIENT_URL`
+
+`SERVER_URL`
+
+`PORT`
+
+## Environment Variables - FRONTEND
+
+To run this project, you will need to add the following environment variables to your .env file inside /g-cet_website directory
 
 `NEXT_PUBLIC_API_HOST`
 
-`SECRET_API_KEY`
+`NEXT_PUBLIC_OPENAI_API_KEY`
+
+
 
 ## Authors
 
 - [@aaqifshafi](https://www.github.com/aaqifshafi)
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
