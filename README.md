@@ -29,7 +29,7 @@ Start the Front end server
 ```
 
 
-Now go back to mainin diractory and:
+Again, Go to the project directory
 
 ```bash
   cd backend
