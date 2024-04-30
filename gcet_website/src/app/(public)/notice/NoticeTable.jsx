@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const NoticeTable = ({ notices }) => {
+  const convertToLocalDate = (timestampString) => {
+    return new Date(timestampString);
+  };
   return (
     <div className="m-4">
       <div className="max-w-full overflow-hidden">
@@ -30,26 +33,29 @@ const NoticeTable = ({ notices }) => {
             </tr>
           </thead>
           <tbody>
-            {notices.map((notice, index) => (
-              <tr
-                className={`${index % 2 === 1 ? "bg-gray-200" : ""}`}
-                key={index}
-              >
-                <td className="border border-gray-300 px-4 py-2">
-                  {notice.title}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {notice.date}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {notice.category}
-                </td>
+            {notices
+              .slice()
+              .reverse()
+              .map((notice, index) => (
+                <tr
+                  className={`${index % 2 === 1 ? "bg-gray-200" : ""}`}
+                  key={index}
+                >
+                  <td className="border border-gray-300 px-4 py-2">
+                    {notice.title}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {convertToLocalDate(notice.date).toLocaleDateString()}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {notice.category}
+                  </td>
 
-                <td className="border border-gray-300 px-4 py-2 flex justify-center">
-                  <Button href={notice.downloadLink} text={"Download"} />
-                </td>
-              </tr>
-            ))}
+                  <td className="border text-xs border-gray-300 px-4 py-2 flex justify-center">
+                    <Button href={notice.downloadLink} text={"Download"} />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

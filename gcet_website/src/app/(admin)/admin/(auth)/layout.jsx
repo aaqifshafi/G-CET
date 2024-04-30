@@ -1,7 +1,10 @@
 "use client";
 import "@/app/globals.css";
-import Footer from "@/components/student/Footer";
-import Header from "@/components/student/Header";
+import Image from "next/image";
+import Button from "@/components/Button";
+import Link from "next/link";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -19,7 +22,7 @@ export default function RootLayout({ children }) {
   }, [router]); // Add router as a dependenc
   return (
     <>
-      <Header />
+      <Header href="/student/login" text={"Student Portal"} />
       <main>{children}</main>
       <Footer />
     </>

@@ -1,5 +1,5 @@
 .main::before {
-  content: "";
+  content: "center";
   position: absolute;
   height: 100%;
   width: 100%;
@@ -7,7 +7,7 @@
     url("/mccgate.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right center;
+  background-position: center;
   filter: blur(4px);
   z-index: -10;
 }

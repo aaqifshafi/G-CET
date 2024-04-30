@@ -11,24 +11,22 @@ export const metadata = {
 
 const SignUp = () => {
   return (
-    <>
-      <div className={`${styles.main} relative`}>
-        <div className="z-10 relative">
-          <div className="max-w-screen-xl mx-auto py-8 px-3 ">
-            <div className="bg-white p-4 max-w-fit mx-auto flex flex-col items-center rounded-sm shadow-lg ">
-              <Image
-                src="/mcc-icon.png"
-                alt="G-CET Logo"
-                width={100}
-                height={100}
-              />
-              <Heading2 headingText="Faculty Registration" />
-              <SignUpForm />
-            </div>
+    <div className={`${styles.main} relative`}>
+      <div className="z-10 relative">
+        <div className="max-w-screen-xl mx-auto py-8 px-3 ">
+          <div className="bg-white p-4 max-w-fit mx-auto flex flex-col items-center rounded-sm shadow-lg ">
+            <Image
+              src="/mcc-icon.png"
+              alt="G-CET Logo"
+              width={100}
+              height={100}
+            />
+            <Heading2 headingText="Faculty Registration" />
+            <SignUpForm />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
