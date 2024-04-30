@@ -12,6 +12,7 @@ const payment = require('./routes/payment');
 
 const app = express();
 const PORT = process.env.PORT;
+const mongoUrl = process.env.MONGO_URL;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -21,7 +22,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/')
+mongoose.connect(mongoUrl)
 app.use('/', authRoutes, applicationForm, feedback, notice, myApplications, payment);
 
 
