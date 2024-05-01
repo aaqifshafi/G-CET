@@ -30,7 +30,7 @@ router.post("/admin/upload-notice", upload.single("file"), async (req, res) => {
         date: new Date(),
         filePath: req.file.path
     }
-    console.log(noticeData)
+
     const notice = await Notice.create(noticeData)
     const downloadLink = `${url}/notice/${notice.id}`
     notice.downloadLink = downloadLink

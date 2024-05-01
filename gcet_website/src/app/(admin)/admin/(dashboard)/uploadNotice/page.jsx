@@ -7,11 +7,11 @@ import Heading2 from "@/components/Heading2";
 import { faFilePdf, faList, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const UploadNoticePage = () => {
-  const [isToastVisible, setIsToastVisible] = useState(false); // TOAST STATE VARIABLE
-  const [toast, setToast] = useState({ type: "", message: "" }); // TOAST TYPE AND MESSAGE STATE VARIABLE
-  const [loading, setLoading] = useState(false); // SPINNER STATE VARIABLE
+  const [isToastVisible, setIsToastVisible] = useState(false);
+  const [toast, setToast] = useState({ type: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
-  const [file, setFile] = useState(null); // FILE STATE VARIABLE
+  const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     category: "",
     title: "",
@@ -181,7 +181,11 @@ const UploadNoticePage = () => {
               />
             </div>
             <div className="my-4">
-              <SubmitButton text="Upload" loading={loading} />
+              <SubmitButton
+                text="Upload"
+                loading={loading}
+                loadingText={"Uploading..."}
+              />
             </div>
           </div>
         </form>

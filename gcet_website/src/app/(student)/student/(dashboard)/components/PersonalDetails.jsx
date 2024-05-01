@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
-import AVATAR from "../user.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
 import {
   faCalendarDays,
   faHouse,
@@ -10,7 +9,6 @@ import {
   faUserTie,
   faVenusMars,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
 import studentContext from "@/contexts/student/studentContext";
 
 const StudentInfo = () => {

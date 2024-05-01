@@ -1,5 +1,4 @@
 import CopyWriteSection from "./public/footer/CopyWriteSection";
-import GetInTouch from "./public/footer/GetInTouch";
 
 const Footer = () => {
   return (
