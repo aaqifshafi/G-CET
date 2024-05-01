@@ -117,7 +117,7 @@ const ChatBox = ({ formData }) => {
             type="text"
             value={message}
             onChange={handleMessageChange}
-            placeholder="Type or Paste Syllabus here..."
+            placeholder="Type or Upload Syllabus here..."
           />
           <label
             htmlFor="file-input"
