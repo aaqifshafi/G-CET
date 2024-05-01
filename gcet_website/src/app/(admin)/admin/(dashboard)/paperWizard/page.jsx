@@ -20,18 +20,6 @@ const PaperWizard = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  // TODO DEFINE UPLOAD FUNCTION FOR ON FORM SUBMIT
-
-  // const validateForm = (e) => {
-  //   e.preventDefault();
-
-  //   // Validate form data
-  //   if (!formData.marks || !formData.difficulty || !formData.duration) {
-  //     setToast({ type: "error", message: "Please fill all required fields" });
-  //     setIsToastVisible(true);
-  //     return;
-  //   }
-  //};
 
   return (
     <div className="min-h-fit sm:mx-2 border-2 rounded-md border-primary-regular overflow-x-auto">

@@ -5,20 +5,55 @@ import ResponseBox from "./ResponseBox";
 import styles from "./Loading.module.css";
 
 const openAiAPI = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+const rapidAPIKey = process.env.NEXT_PUBLIC_RAPID_API_KEY;
+const rapidAPIHost = process.env.NEXT_PUBLIC_RAPID_API_HOST;
 
 const ChatBox = ({ formData }) => {
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
   const [apiResponseMessage, setApiResponseMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [fileText, setFileText] = useState("");
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
-
-  const sendMessage = async (e) => {
-    e.preventDefault();
+  const handleFileChange = async (e) => {
     setIsLoading(true);
+    const file = e.target.files[0];
+    const text = await convertPdfToText(file, 1);
+    setFileText(text);
+    e.target.value = null;
+    setIsLoading(false);
+  };
+  const convertPdfToText = async (pdfFile, page) => {
+    const url =
+      "https://pdf-to-text-converter.p.rapidapi.com/api/pdf-to-text/convert";
+    const data = new FormData();
+    data.append("file", pdfFile);
+    data.append("page", page);
+    const options = {
+      method: "POST",
+      headers: {
+        "X-RapidAPI-Key": rapidAPIKey,
+        "X-RapidAPI-Host": rapidAPIHost,
+      },
+      body: data,
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const result = await response.text();
+      return result;
+      // console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+    return result;
+  };
+  const sendMessage = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
 
     const url = "https://api.openai.com/v1/chat/completions";
     const token = `Bearer ${openAiAPI}`;
@@ -37,7 +72,7 @@ const ChatBox = ({ formData }) => {
             ...allMessages,
             {
               role: "user",
-              content: message,
+              content: message || fileText,
             },
             {
               role: "assistant",
@@ -83,6 +118,19 @@ const ChatBox = ({ formData }) => {
             value={message}
             onChange={handleMessageChange}
             placeholder="Type or Paste Syllabus here..."
+          />
+          <label
+            htmlFor="file-input"
+            className="self-center p-3 text-blue-900 focus:outline-none cursor-pointer"
+          >
+            <FontAwesomeIcon icon={faPaperclip} />
+          </label>
+          <input
+            id="file-input"
+            type="file"
+            accept=".pdf"
+            onChange={handleFileChange}
+            className="hidden"
           />
 
           <button
