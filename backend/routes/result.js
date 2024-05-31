@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const upload = require('../middlewares/multer.middleware');
 const Result = require('../models/Results');
-const excelToJson = require('convert-excel-to-json');
 const fs = require('fs-extra');
+const ExcelJS = require('exceljs'); // Import exceljs package
 
 router.post("/admin/upload-result", upload.single("file"), async (req, res) => {
     const resultData = {
@@ -15,55 +15,64 @@ router.post("/admin/upload-result", upload.single("file"), async (req, res) => {
         filePath: req.file.path
     }
 
-    // Convert Excel to JSON
-    const excelData = excelToJson({
-        sourceFile: resultData.filePath,
-        header: {
-            rows: 1,
-        },
-        columnToKey: {
-            // '*' means to use the column header as the key
-            '*': '{{columnHeader}}',
-        },
-    });
+    try {
+        // Create a workbook reader
+        const workbook = new ExcelJS.Workbook();
+        await workbook.xlsx.readFile(resultData.filePath);
 
-    // Extract subjects from the first row (excluding non-header columns like enrollment number)
-    const subjects = Object.keys(excelData.Sheet1[0]).filter(key => key !== 'enrollmentNumber');
+        // Get the first worksheet
+        const worksheet = workbook.getWorksheet(1);
 
-    // Map subjects and marks for each student
-    const result = excelData.Sheet1.map((row) => {
-        const marksArray = [];
-        subjects.forEach(subject => {
-            // Exclude the 'enrollmentNumber' column when mapping subjects
-            if (subject !== 'enrollmentNumber') {
-                marksArray.push({
-                    subject: subject,
-                    marks: row[subject]
+        // Extract subjects from the first row (excluding non-header columns like enrollment number)
+        const subjects = [];
+        worksheet.getRow(1).eachCell((cell, colNumber) => {
+            if (colNumber > 1) {
+                subjects.push(cell.value);
+            }
+        });
+
+        // Map subjects and marks for each student
+        const result = [];
+        worksheet.eachRow((row, rowNum) => {
+            if (rowNum > 1) { // Exclude header row
+                const marksArray = [];
+                row.eachCell((cell, colNumber) => {
+                    if (colNumber > 1) { // Exclude enrollmentNumber column
+                        marksArray.push({
+                            subject: subjects[colNumber - 2], // Adjust for 0-based index
+                            marks: cell.value
+                        });
+                    }
+                });
+
+                result.push({
+                    enrollmentNumber: row.getCell(1).value, // Assuming enrollmentNumber is in first column
+                    exam: resultData.exam,
+                    marks: marksArray
                 });
             }
         });
 
-        return {
-            enrollmentNumber: row.enrollmentNumber,
+        // Save result to database
+        const resultModel = await Result.create({
+            semester: resultData.semester,
+            department: resultData.department,
             exam: resultData.exam,
-            marks: marksArray
-        };
-    });
+            result: result,
+        });
+        await resultModel.save();
 
-    const resultModel = await Result.create({
-        semester: resultData.semester,
-        department: resultData.department,
-        exam: resultData.exam,
-        result: result,
-    });
-    await resultModel.save()
+        // Remove uploaded Excel file
+        await fs.remove(resultData.filePath);
 
-    // Remove uploaded Excel file
-    fs.remove(resultData.filePath);
-
-    // Send response
-    res.json({ status: "success", message: "Result uploaded successfully" });
+        // Send response
+        res.json({ status: "success", message: "Result uploaded successfully" });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ status: "error", message: "Internal server error" });
+    }
 });
+
 router.post("/student/results", async (req, res) => {
     try {
         const data = req.body;
@@ -96,4 +105,5 @@ router.post("/student/results", async (req, res) => {
         return res.status(500).json({ status: "error", message: "Internal server error" });
     }
 });
+
 module.exports = router;
