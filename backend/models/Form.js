@@ -5,7 +5,6 @@ const FormSchema = new mongoose.Schema({
     enrollmentNumber: {
         type: String,
         required: true,
-        unique: true,
     },
     currentSem: {
         type: String,
