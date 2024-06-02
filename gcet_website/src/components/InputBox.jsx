@@ -56,6 +56,8 @@ InputBox.propTypes = {
   isRequired: PropTypes.bool,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
 export default InputBox;

@@ -33,17 +33,12 @@ router.post('/student/form', async (req, res) => {
                 const newForm = new Form(data);
                 // Save the new form document
                 const savedForm = await newForm.save();
-
+                console.log('savedForm', savedForm)
                 // Update the student document to add the reference to the new form
                 student.forms.push(savedForm._id);
                 await student.save();
-
                 // Populate the forms field before sending the response
                 const populatedStudent = await Students.findOne(filter).populate('forms')
-
-
-
-
                 return res.status(200).json({ success: true, message: 'Form Sucessfuly Saved', student: populatedStudent });
             }
         }

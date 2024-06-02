@@ -54,8 +54,8 @@ const StudentForm = () => {
   }
 
   // Define a function to receive data from the child component
+  const studentDetails = useContext(studentContext).studentDetails;
   const getData = (key) => {
-    const studentDetails = useContext(studentContext).studentDetails;
     // setFormData(studentDetails?.email);
     // Do something with the received data
     // setFormData.email(data);
@@ -264,21 +264,53 @@ const StudentForm = () => {
             />
           </div>
 
+          {/* Current Semester */}
           <div className="w-full flex-col flex">
-            <label htmlFor="currentSem">
+            <label htmlFor="program">
               Semester<span className="text-red-600">*</span>
             </label>
-            <InputBox
-              name="currentSem"
-              placeholder="Current Semester"
-              type="number"
-              max={8}
-              min={1}
-              id="currentSem"
-              icon={faBookReader}
-              onChangeHandler={onChangeHandler}
-              Required={true}
+          </div>
+          <div className="border rounded-sm overflow-hidden flex">
+            <FontAwesomeIcon
+              className="self-center p-3 text-blue-900"
+              icon={faGraduationCap}
             />
+            <select
+              className="py-2 px-3 bg-gray-100 flex-1 cursor-pointer w-10/12"
+              name="currentSem"
+              id="currentSem"
+              value={formData.currentSem}
+              onChange={onChangeHandler}
+              required
+            >
+              <option hidden value={"default"}>
+                Select Current Semester
+              </option>
+              <option className="cursor-pointer" value="1">
+                1
+              </option>
+              <option className="cursor-pointer" value="2">
+                2
+              </option>
+              <option className="cursor-pointer" value="3">
+                3
+              </option>
+              <option className="cursor-pointer" value="4">
+                4
+              </option>
+              <option className="cursor-pointer" value="5">
+                5
+              </option>
+              <option className="cursor-pointer" value="6">
+                6
+              </option>
+              <option className="cursor-pointer" value="7">
+                7
+              </option>
+              <option className="cursor-pointer" value="8">
+                8
+              </option>
+            </select>
           </div>
 
           {/* Enrollment No.*/}
@@ -301,7 +333,7 @@ const StudentForm = () => {
           </div>
           <div className="w-full flex-col flex">
             <label htmlFor="fatherName">
-              Father's Name<span className="text-red-600">*</span>
+              Father&apos;s Name<span className="text-red-600">*</span>
             </label>
             <InputBox
               name="fatherName"
@@ -316,7 +348,7 @@ const StudentForm = () => {
           </div>
           <div className="w-full flex-col flex">
             <label htmlFor="motherName">
-              Mother's Name<span className="text-red-600">*</span>
+              Mother&apos;s Name<span className="text-red-600">*</span>
             </label>
             <InputBox
               name="motherName"
@@ -369,6 +401,8 @@ const StudentForm = () => {
               </option>
             </select>
           </div>
+
+          {/* Department */}
           <div className="w-full flex-col flex">
             <label htmlFor="department">
               Department<span className="text-red-600">*</span>
