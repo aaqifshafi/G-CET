@@ -31,10 +31,11 @@ const PrincipleMsg = () => {
           />
           <p className="text-center">
             Welcome to GCET Safapora, where innovation meets excellence on the
-            serene banks of Manasbal Lake. As Principal, I'm proud to foster a
-            dynamic learning environment that prepares our students for success
-            in engineering and beyond. Join us in shaping tomorrow's leaders
-            through cutting-edge education and holistic development.
+            serene banks of Manasbal Lake. As Principal, I&apos;m proud to
+            foster a dynamic learning environment that prepares our students for
+            success in engineering and beyond. Join us in shaping
+            tomorrow&apos;s leaders through cutting-edge education and holistic
+            development.
           </p>
           <div className="text-right my-4">
             <p className="font-semibold">Principal</p>

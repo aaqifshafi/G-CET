@@ -146,7 +146,7 @@ const UploadNoticePage = () => {
                     Examination
                   </option>
                   <option className="cursor-pointer" value="Placement">
-                    Placement"
+                    Placement
                   </option>
                   <option className="cursor-pointer" value="Library">
                     Library

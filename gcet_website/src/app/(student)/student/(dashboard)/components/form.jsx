@@ -54,8 +54,8 @@ const StudentForm = () => {
   }
 
   // Define a function to receive data from the child component
+  const studentDetails = useContext(studentContext).studentDetails;
   const getData = (key) => {
-    const studentDetails = useContext(studentContext).studentDetails;
     // setFormData(studentDetails?.email);
     // Do something with the received data
     // setFormData.email(data);
@@ -305,7 +305,7 @@ const StudentForm = () => {
           </div>
           <div className="w-full flex-col flex">
             <label htmlFor="fatherName">
-              Father's Name<span className="text-red-600">*</span>
+              Father&apos;s Name<span className="text-red-600">*</span>
             </label>
             <InputBox
               name="fatherName"
@@ -320,7 +320,7 @@ const StudentForm = () => {
           </div>
           <div className="w-full flex-col flex">
             <label htmlFor="motherName">
-              Mother's Name<span className="text-red-600">*</span>
+              Mother&apos;s Name<span className="text-red-600">*</span>
             </label>
             <InputBox
               name="motherName"

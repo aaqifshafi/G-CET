@@ -21,12 +21,12 @@ const StudentInfo = () => {
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-1 my-4 font-semibold">
         <span className="text-blue-900 col-span-2">
           <FontAwesomeIcon className="mr-2" icon={faUserTie} />
-          Father's Name
+          Father&apos;s Name
         </span>
         <span className="col-span-3">{studentDetails?.fatherName}</span>
         <span className="text-blue-900 col-span-2">
           <FontAwesomeIcon className="mr-2" icon={faUser} />
-          Mother's Name
+          Mother&apos;s Name
         </span>
         <span className="col-span-3">{studentDetails?.motherName}</span>
         <span className="text-blue-900 col-span-2">

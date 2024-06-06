@@ -78,7 +78,7 @@ const Civil = () => {
           <span className="text-4xl text-primary-regular font-bold">W</span>
           elcome to the Department of Civil Engineering, a cornerstone of
           innovation and infrastructure development at our esteemed institution.
-          As stewards of society's built environment, we are dedicated to
+          As stewards of society&apos;s built environment, we are dedicated to
           educating future leaders in civil engineering, equipping them with the
           skills and knowledge to tackle complex challenges and shape a
           sustainable future.
