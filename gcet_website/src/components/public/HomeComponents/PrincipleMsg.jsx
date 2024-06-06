@@ -30,10 +30,11 @@ const PrincipleMsg = () => {
             icon={faQuoteLeft}
           />
           <p className="text-center">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et,
-            molestiae ipsa. Velit quidem alias, mollitia laboriosam veniam eum
-            dolorem architecto facere quibusdam. Temporibus impedit dignissimos
-            dolores architecto sunt quis a.
+            Welcome to GCET Safapora, where innovation meets excellence on the
+            serene banks of Manasbal Lake. As Principal, I'm proud to foster a
+            dynamic learning environment that prepares our students for success
+            in engineering and beyond. Join us in shaping tomorrow's leaders
+            through cutting-edge education and holistic development.
           </p>
           <div className="text-right my-4">
             <p className="font-semibold">Principal</p>
