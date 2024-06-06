@@ -3,7 +3,7 @@
 # misc
 .DS_Store
 
-uploads/*.pdf
+/uploads/*.pdf
 
 
 # local env files
