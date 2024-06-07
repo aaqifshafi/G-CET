@@ -29,7 +29,27 @@ router.post('/student/form', async (req, res) => {
                     currentSem: currentSem,
                     formNumber: formData.formNumber,
                     email: email,
+
                 }
+
+                // Update Student Details HERE
+                student.currentSem = currentSem;
+                student.address = formData.address;
+                student.district = formData.city;
+                student.district = formData.district;
+                student.state = formData.state;
+                student.pincode = formData.pincode;
+                student.gender = formData.gender;
+                student.category = formData.category;
+                student.dob = formData.dob;
+                student.enrollmentNumber = enrollmentNumber;
+                student.religion = formData.religion;
+                student.department = formData.department;
+                student.program = formData.program;
+                student.fatherName = formData.fatherName;
+                student.motherName = formData.motherName;
+
+
                 const newForm = new Form(data);
                 // Save the new form document
                 const savedForm = await newForm.save();
@@ -38,6 +58,7 @@ router.post('/student/form', async (req, res) => {
                 await student.save();
                 // Populate the forms field before sending the response
                 const populatedStudent = await Students.findOne(filter).populate('forms')
+
                 return res.status(200).json({ success: true, message: 'Form Sucessfuly Saved', student: populatedStudent });
             }
         }
