@@ -66,7 +66,7 @@ router.post("/create-payment-session", async (req, res) => {
         const transactionId = session.id;
         // Update the Forms collection to mark payment as true
         await Form.findOneAndUpdate(
-            { enrollmentNumber: details.enrollmentNumber },
+            { formNumber: details.formNumber },
             { $set: { feeStatus: true, transactionId: transactionId } }
         );
 
