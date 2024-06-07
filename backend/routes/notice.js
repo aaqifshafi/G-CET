@@ -5,7 +5,7 @@ const upload = require('../middlewares/multer.middleware');
 // const upload = multer({ dest: 'uploads/' });
 const Notice = require('../models/Notifications');
 
-const url = process.env.SERVER_URL
+// const url = process.env.SERVER_URL
 // GET route for /notice
 router.get('/notice', async (req, res) => {
     try {
@@ -32,7 +32,7 @@ router.post("/admin/upload-notice", upload.single("file"), async (req, res) => {
     }
 
     const notice = await Notice.create(noticeData)
-    const downloadLink = `${url}/notice/${notice.id}`
+    const downloadLink = `/notice/${notice.id}`
     notice.downloadLink = downloadLink
     await notice.save()
 
