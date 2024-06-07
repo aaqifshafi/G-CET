@@ -26,7 +26,9 @@ const Notices = () => {
     };
     fetchData();
   }, []);
-
+  const convertToLocalDate = (timestampString) => {
+    return new Date(timestampString);
+  };
   return (
     <div className={`${styles.noticeList} grid gap-6 m-4`}>
       {notices.map((notice, index) => (
@@ -34,7 +36,7 @@ const Notices = () => {
           key={index}
           category={notice.category}
           title={notice.title}
-          date={notice.date}
+          date={convertToLocalDate(notice.date).toLocaleDateString()}
           description={notice.description}
           downloadLink={apiURL + notice.downloadLink}
           detailsLink={notice.detailsLink}
