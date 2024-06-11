@@ -41,8 +41,6 @@ router.get('/admin/applications', async (req, res) => {
 });
 router.get('/admin/pending', async (req, res) => {
     try {
-
-
         // Find forms submitted by the student
         const forms = await Form.find({ status: false });
 
@@ -70,7 +68,6 @@ router.put('/admin/pending/update/:formNumber', async (req, res) => {
 
         // Update the status property to true
         form.status = true;
-
         // Save the updated feedback
         await form.save();
 

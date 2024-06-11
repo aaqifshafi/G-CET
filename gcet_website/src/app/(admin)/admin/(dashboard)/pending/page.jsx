@@ -7,13 +7,17 @@ const apiURL = process.env.NEXT_PUBLIC_API_HOST;
 
 const PendingApplications = () => {
   const handleAccept = async (formNumber) => {
+    console.log("Accepting form", formNumber);
     try {
-      const response = await fetch(`${url}/admin/pending/update${formNumber}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${apiURL}/admin/pending/update/${formNumber}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         location.reload();
@@ -58,7 +62,7 @@ const PendingApplications = () => {
         Pending Applications
       </h1>
       <section className="p-4 overflow-hidden">
-        <Heading3 headingText={"Accept or Defect New Application Forms"} />
+        <Heading3 headingText={"Accept New Application Forms"} />
         <div className="border  my-4 bg-secondary overflow-x-auto">
           <table className="max-w-full w-full min-w-max">
             <thead>
@@ -75,7 +79,6 @@ const PendingApplications = () => {
                 </th>
                 <th className="border border-gray-300 px-4 py-2">Status</th>
                 <th className="border border-gray-300 px-4 py-2">Accept</th>
-                <th className="border border-gray-300 px-4 py-2">Defect</th>
               </tr>
             </thead>
             {/* Table body */}
@@ -104,18 +107,6 @@ const PendingApplications = () => {
                         onClick={() => handleAccept(form.formNumber)}
                       >
                         Accept
-                      </button>
-                    </td>
-                  ) : (
-                    <td className="border border-gray-300 px-4 py-2">Closed</td>
-                  )}
-                  {!form.status ? (
-                    <td className="border border-gray-300 p-2">
-                      <button
-                        className="bg-primary-regular text-xs text-secondary  p-2 rounded-full"
-                        onClick={() => handleAccept(form.formNumber)}
-                      >
-                        Defect
                       </button>
                     </td>
                   ) : (
