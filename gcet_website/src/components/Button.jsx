@@ -1,10 +1,12 @@
 import Link from "next/link";
 
-const Button = ({ text, href }) => {
+const Button = ({ text, href, target, rel }) => {
   return (
     <Link
       className="bg-primary-regular text-xs hover:bg-[#f33d06] text-white font-medium py-2 px-6 rounded-full duration-500"
       href={href}
+      target={target}
+      rel={rel}
       dangerouslySetInnerHTML={{ __html: text }}
     />
   );

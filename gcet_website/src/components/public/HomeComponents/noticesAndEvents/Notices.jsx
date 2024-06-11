@@ -38,7 +38,7 @@ const Notices = () => {
           title={notice.title}
           date={convertToLocalDate(notice.date).toLocaleDateString()}
           description={notice.description}
-          downloadLink={apiURL + notice.downloadLink}
+          downloadLink={notice.downloadLink}
           detailsLink={notice.detailsLink}
         />
       ))}

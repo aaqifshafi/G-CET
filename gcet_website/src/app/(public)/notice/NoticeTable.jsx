@@ -52,7 +52,12 @@ const NoticeTable = ({ notices }) => {
                   </td>
 
                   <td className="border text-xs border-gray-300 px-4 py-2 flex justify-center">
-                    <Button href={notice.downloadLink} text={"Download"} />
+                    <Button
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={notice.downloadLink}
+                      text={"Download"}
+                    />
                   </td>
                 </tr>
               ))}

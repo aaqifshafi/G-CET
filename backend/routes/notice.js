@@ -2,10 +2,13 @@ require("dotenv").config()
 const express = require('express');
 const router = express.Router();
 const upload = require('../middlewares/multer.middleware');
-// const upload = multer({ dest: 'uploads/' });
 const Notice = require('../models/Notifications');
+const { uploadFile } = require('../middlewares/uploadToSpaces');
+const fs = require('fs');
+const util = require('util');
+const unlinkFile = util.promisify(fs.unlink); // To delete the file after uploading to DigitalOcean Spaces
 
-// const url = process.env.SERVER_URL
+
 // GET route for /notice
 router.get('/notice', async (req, res) => {
     try {
@@ -30,19 +33,29 @@ router.post("/admin/upload-notice", upload.single("file"), async (req, res) => {
         date: new Date(),
         filePath: req.file.path
     }
+    const file = req.file;
+    const result = await uploadFile(file);
+    await unlinkFile(file.path);
+    console.log(result);
 
+    // Save the notice to the database
     const notice = await Notice.create(noticeData)
-    const downloadLink = `/notice/${notice.id}`
+    const downloadLink = `${result.Location}`
     notice.downloadLink = downloadLink
     await notice.save()
 
     res.json({ status: "success", message: "Notice uploaded successfully", downloadLink })
 })
 
+
 router.get("/notice/:id", async (req, res) => {
     const notice = await Notice.findById(req.params.id)
+
     // Assuming you have a field in your Notice model to store the file path
-    res.download(notice.filePath, notice.originalName)
+    const readStream = getFileStream(notice.downloadLink)
+    readStream.pipe(res)
+
+    res.download(notice.downloadLink, notice.originalName)
 })
 
 
